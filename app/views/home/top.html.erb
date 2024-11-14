@@ -1,0 +1,43 @@
+<%= javascript_importmap_tags %>
+<%= javascript_include_tag "tabs" %>
+<%# loginできてるかどうか %>
+<% if true %>
+
+<div class="main user-show">
+    <div class="container">
+    <!-- タブボタン -->
+    <div class="user-tab">
+        <button class="tab-button active" data-tab="tab1">メンバー</button>
+        <button class="tab-button" data-tab="tab2">検索</button>
+    </div>
+
+    <!-- タブごとのコンテンツ -->
+    <div class="tab-content" id="tab1">
+        <!-- current user -->
+        <% @users.each do |user| %>
+        <div>
+        <%= user.name %>
+        </div>
+        <% end %>
+    </div>
+    <div class="tab-content" id="tab2" style="display: none;">
+        <p>検索</p>
+    </div>
+    </div>
+</div>
+<% else %>
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">技術スタック</h1>
+      <div class="form">
+        <div class="form-body">
+            <div class="form-error">
+            </div>
+          
+          <textarea name="content"></textarea>
+          <input type="submit" value="投稿">
+        </div>
+      </div>
+  </div>
+</div>
+<% end %>

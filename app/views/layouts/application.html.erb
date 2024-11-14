@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hackathonsupport App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <head>
+    <title>TweetApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <% if false %>
+    <div class="header-logout">
+        Logout
+    </div>
+    <% end %>
+  <div class="header-logo">
+    <a href="/">Hackathon Support</a>
+  </div>
+  <ul class="header-menus">
+    <li>
+      <%= link_to("new", "projects/index")%>
+    </li>
+  </ul>
+  <ul class="header-menus">
+    <li>
+      <%= link_to("icon", "/signup")%>
+    </li>
+  </ul>
+</header>
+    <%= yield %>
+  </body>
+</html>
