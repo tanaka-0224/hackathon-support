@@ -33,3 +33,14 @@ config/importmap.rb に pin "*", to: "_.js"
 必要な view に以下を追加
 <%= javascript_importmap_tags %>
 <%= javascript_include_tag "_" %>
+
+issue ドリブン開発
+
+issue の作成。（タスクの作成）
+main ブランチから Issue に基づいたブランチを作成。
+作成したブランチで開発を行い、コミットする。
+プルリクエストを作成し、マージする。
+繰り返す
+
+mysql.server start
+rails s
