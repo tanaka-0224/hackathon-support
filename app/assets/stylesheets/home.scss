@@ -179,8 +179,22 @@ header {
 }
 
 .tab-content {
+  display: none;
   padding: 20px;
   border-top: 1px solid #ddd;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#search-results {
+  margin-top: 10px;
+}
+
+#search-results div {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
 }
 
 /* 技術スタック */

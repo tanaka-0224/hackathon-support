@@ -1,5 +1,5 @@
 # Pin npm packages by running ./bin/importmap
 
-pin "application"
+# pin "application"
 
-pin "tabs", to: "tabs.js"
+# pin "tabs", to: "tabs.js"

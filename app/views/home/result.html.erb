@@ -1,0 +1,9 @@
+<% if results.any? %>
+  <ul>
+    <% results.each do |user| %>
+      <li><%= user.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>該当する結果がありません。</p>
+<% end %>
