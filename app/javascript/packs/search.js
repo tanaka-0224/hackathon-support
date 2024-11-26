@@ -2,16 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("search-form");
 
   form.addEventListener("submit", function (event) {
-    event.preventDefault(); // 通常のフォーム送信を無効にする
+    event.preventDefault();
 
-    // フォームのデータをURLエンコードしてクエリパラメータに変換
     const formData = new FormData(form);
-    const queryParams = new URLSearchParams(formData).toString(); // クエリパラメータに変換
+    const queryParams = new URLSearchParams(formData).toString();
 
-    // URLを作成
     const url = form.action + "?" + queryParams;
 
-    // Fetch APIでGETリクエストを送信
     fetch(url, {
       method: "GET", // GETリクエストを送信
     })
@@ -21,17 +18,45 @@ document.addEventListener("DOMContentLoaded", function () {
         resultsContainer.innerHTML = ""; // 以前の結果をクリア
 
         if (data.length > 0) {
-          data.forEach((member) => {
+          data.forEach((user) => {
             const resultItem = document.createElement("div");
-            resultItem.textContent = member.name;
+            resultItem.textContent = `ID: ${user.id}, Name: ${user.name}`;
+
+            const addButton = document.createElement("button");
+            addButton.textContent = "Add";
+            addButton.onclick = function () {
+              addUserToProject(user.id);
+            };
+            resultItem.appendChild(addButton);
+
             resultsContainer.appendChild(resultItem);
           });
         } else {
-          resultsContainer.innerHTML = "<p>存在しないユーザーです</p>";
+          resultsContainer.innerHTML = "<p>No users found</p>";
         }
       })
       .catch((error) => {
         console.error("検索結果の取得エラー:", error);
       });
   });
+  function addUserToProject(userId) {
+    console.log("UserID、ProjectID", userId, currentProjectId); // ログでIDを確認
+    fetch("/add_member", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('[name="csrf-token"]').content,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: userId, project_id: currentProjectId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response from server:", data); // サーバーからのレスポンスを確認
+        const membersContainer = document.getElementById("members-list");
+        const newMember = document.createElement("div");
+        newMember.textContent = `ID: ${data.user.id}, Name: ${data.user.name}`;
+        membersContainer.appendChild(newMember);
+      })
+      .catch((error) => console.error("Error adding user to project:", error));
+  }
 });

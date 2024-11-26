@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    
   </head>
   <head>
     <title>TweetApp</title>
@@ -16,6 +17,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <script>
+  // RailsのセッションからプロジェクトIDをJavaScriptに渡す
+  var currentProjectId = <%= session[:project_id] || 'null' %>;
+  </script>
+
   <body>
     <header>
     <% if false %>
@@ -24,13 +30,17 @@
     </div>
     <% end %>
   <div class="header-logo">
-    <a href="/">Hackathon Support</a>
+    Hackathon Support
   </div>
   <ul class="header-menus">
     <li>
-      <%= link_to("new", "projects/index")%>
+      <%= form_with url: "/start", method: :post do %>
+      <%= submit_tag "new" %>
+      <% end %>
     </li>
   </ul>
+
+  
   <ul class="header-menus">
     <li>
       <%= link_to("icon", "/signup")%>
