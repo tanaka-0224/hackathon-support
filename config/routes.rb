@@ -1,13 +1,32 @@
 Rails.application.routes.draw do
+  resources :projects, only: [ :create ]  # 新規作成のみ
+  root "home#top"  # ホームページに遷移
+
+  get "projectmembers/index"
+  get "projectmembers/create"
   get "tasks/index" => "tasks#index"
   get "projects/index" => "projects#index"
-  get "users/index" => "users#index"
-  get "/" => "home#top"
-  get "signup" => "users#new"
-  post "users/create" => "users#create"
-  get "users/:id" => "users#show"
 
-  get "search" => "home#search"
+  # get "start", to: "projects#new"
+  # post "projects/create", to: "projects#create"
+  post "/start", to: "projects#create"
+
+  get "search" => "home#search" # ユーザー検索のrouting
+  post "add_member", to: "projectmembers#add_member"
+
+
+  get "users/index" => "users#index"
+  get "signup" => "users#new"
+  post "users/create", to: "users#create"
+  get "users/:id" => "users#show"
+  get "login", to: "users#login_form"
+  post "/login", to: "users#login"
+  get "show/:user_id", to: "users#show"
+  get "users/search", to: "users#search" # ユーザー検索
+
+
+
+  get "/:project_id", to: "home#top"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

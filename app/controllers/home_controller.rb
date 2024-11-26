@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
-  def top
-    @members = User.all
-  end
+  before_action :set_current_user, { only: [ :top ] }
 
   def search
     # IDで検索する場合、他の条件に変更可能
@@ -12,5 +10,23 @@ class HomeController < ApplicationController
     end
 
     render json: @members
+  end
+  def add_member
+    user = User.find(params[:user_id])
+    if current_user.team_members << user
+      render json: { success: true }
+    else
+      render json: { success: false }
+    end
+  end
+
+  def top
+    if User.exists?(id: session[:user_id])
+      @user = User.find(session[:user_id])  # ユーザーを取得
+    end
+    @members = ProjectMember.where(project_id: session[:project_id])
+    @members.each do |member|
+      puts member.user.name # userが関連付けられているか確認
+    end
   end
 end
