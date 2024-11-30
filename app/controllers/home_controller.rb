@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  before_action :set_current_user, { only: [ :top ] }
-
   def search
     # IDで検索する場合、他の条件に変更可能
     if params[:id].present?

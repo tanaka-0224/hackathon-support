@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_19_082122) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_30_052414) do
   create_table "project_members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
@@ -42,6 +42,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_19_082122) do
     t.datetime "updated_at", null: false
     t.string "password"
     t.string "password_digest"
+    t.string "image_name"
+    t.text "skills"
   end
 
   add_foreign_key "project_members", "projects"

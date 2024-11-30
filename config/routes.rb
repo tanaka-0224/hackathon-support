@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :projects, only: [ :create ]  # 新規作成のみ
+  resources :users, only: [ :show, :edit, :update ]
   root "home#top"  # ホームページに遷移
 
   get "projectmembers/index"
@@ -23,6 +24,10 @@ Rails.application.routes.draw do
   post "/login", to: "users#login"
   get "show/:user_id", to: "users#show"
   get "users/search", to: "users#search" # ユーザー検索
+
+
+  post "/logout", to: "users#logout"
+
 
 
 

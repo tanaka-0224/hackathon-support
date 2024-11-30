@@ -1,8 +1,44 @@
+<% javascript_pack_tag 'skills' %>
 <div class="main user-show">
   <div class="container">
     <div class="user">
-      <!-- 以下で、ユーザー名を出力してください -->
-      <h2><%= @user.name %></h2>
+      <div class="profile-info">
+        <img src="<%= "/user_images/#{@user.image_name}" %>" alt="Profile Image">
+      </div>
+      <div>
+        <%= @user.name %>
+      </div>
+      
+      <%= form_with model: @user, local: false, id: "skills-form" do |form| %>
+        <div>
+          <%= form.label :skills, "スキル" %><br>
+          <%= form.text_area :skills, placeholder: "スキルを入力してください" %>
+        </div>
+        
+        <!-- スキル保存ボタンの表示制御 -->
+        <% if @current_user.id == @user.id %>
+          <div>
+            <%= form.submit "スキルを保存" %>
+          </div>
+        <% else %>
+          <div style="display: none;">
+            <%= form.submit "スキルを保存" %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div id="skills-message"></div>
+
+      <% @projects.each do |project| %>
+        <div>
+          <%= project.id %>:
+          <% project.users.each do |user| %>
+            <a href="/show/<%= user.id %>">
+              <img src="<%= "/user_images/#{user.image_name}" %>" alt="User Image">
+            </a>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
