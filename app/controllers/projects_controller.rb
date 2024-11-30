@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  before_action :set_current_user
   def create
     # 新しいプロジェクトを作成
     @project = Project.new(name: "New Project") # 必要に応じて属性を追加

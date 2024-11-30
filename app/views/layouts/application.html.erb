@@ -5,18 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    
-  </head>
-  <head>
-    <title>TweetApp</title>
-    <%= csrf_meta_tags %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <script>
   // RailsのセッションからプロジェクトIDをJavaScriptに渡す
   var currentProjectId = <%= session[:project_id] || 'null' %>;
@@ -24,29 +16,40 @@
 
   <body>
     <header>
-    <% if false %>
-    <div class="header-logout">
-        Logout
-    </div>
-    <% end %>
-  <div class="header-logo">
-    Hackathon Support
-  </div>
-  <ul class="header-menus">
-    <li>
-      <%= form_with url: "/start", method: :post do %>
-      <%= submit_tag "new" %>
+      <% if @current_user %>
+      <%= @current_user.name %>
+      <div class="header-logout">
+        <%= form_with(url: "/logout", method: :post) do %>
+        <%= submit_tag "ログアウト" %>
+        <% end %>
+      </div>
+      <% else %>
+      <div class="header-logut">
+        ゲストユーザー
+      </div>
       <% end %>
-    </li>
-  </ul>
-
-  
-  <ul class="header-menus">
-    <li>
-      <%= link_to("icon", "/signup")%>
-    </li>
-  </ul>
-</header>
+      <div class="header-logo">
+        Hackathon Support
+      </div>
+      <ul class="header-menus">
+        <li>
+          <%= form_with url: "/start", method: :post do %>
+          <%= submit_tag "new" %>
+          <% end %>
+        </li>
+      </ul>
+      <ul class="header-menus">
+        <% if @current_user %>
+        <li>
+          <%= link_to("icon", "/show/#{@current_user.id}")%>
+        </li>
+        <% else %>
+        <li>
+        <%= link_to("signup", "/signup")%>
+        </li>
+        <% end %>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>
