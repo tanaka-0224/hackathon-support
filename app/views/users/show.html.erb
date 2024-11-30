@@ -9,7 +9,7 @@
         <%= @user.name %>
       </div>
       
-      <%= form_with model: @current_user, local: false, id: "skills-form" do |form| %>
+      <%= form_with model: @user, local: false, id: "skills-form" do |form| %>
         <div>
           <%= form.label :skills, "スキル" %><br>
           <%= form.text_area :skills, placeholder: "スキルを入力してください" %>
