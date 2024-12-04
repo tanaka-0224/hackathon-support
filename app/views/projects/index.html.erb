@@ -1,2 +1,109 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<%= javascript_pack_tag 'slider' %>
+
+
+<div class="main">
+    <% if @current_user %>
+    <li>
+        <ul>
+            <h3>
+                プロジェクト名：<%= @project.name %>
+            </h3>
+        </ul>
+        <ul>
+            <h3>
+                
+            </h3>
+            <div class="user">
+                メンバー
+            <% @project.users.each do |user| %>
+            <a href="/show/<%= user.id %>">
+              <img src="<%= "/user_images/#{user.image_name}" %>" alt="User Image">
+            </a>
+            <% end %>
+            </div>
+            
+        </ul>
+        <ul>
+            <h3>
+                概要：<%= @project.description %>
+            </h3>
+        </ul>
+        <ul>
+            <h3>
+                機能リスト(割合順)
+            </h3>
+            <% @project.tasks.each do |task| %>
+            <div>
+                ・<%= task.name %>
+            </div>
+            <% end %>
+        </ul>
+    </li>
+    <h3>
+        機能ごとの推定実装時間割合
+    </h3>
+    <div class="multi-slider-container">
+        <div class="slider-track"></div>
+    </div>
+    <div class="output"></div>
+    <input id="percentages" type="hidden" value="<%= @task_percentages.to_json.html_safe %>">
+    <input id="taskNames" type="hidden" value="<%= @task_names.to_json.html_safe %>">
+
+
+    <% else %>
+    <li>
+        <ul>
+            
+        </ul>
+        <ul>
+            prodctname
+        </ul>
+        <ul>
+            description
+        </ul>
+        <ul>
+            function
+        </ul>
+        <%# <ul>
+            <div class="slider-container">
+                <input type="range" id="slider" name="ratio" list="scale" min="10" max="100" step="10">
+                <datalist id="scale">
+                    <option value="10"></option>
+                    <option value="20"></option>
+                    <option value="30"></option>
+                    <option value="40"></option>
+                    <option value="50"></option>
+                    <option value="60"></option>
+                    <option value="70"></option>
+                    <option value="80"></option>
+                    <option value="90"></option>
+                    <option value="100"></option>
+                </datalist>
+                <div class="labels">
+                    <span data-value="10">10%</span>
+                    <span data-value="20">20%</span>
+                    <span data-value="30">30%</span>
+                    <span data-value="40">40%</span>
+                    <span data-value="50">50%</span>
+                    <span data-value="60">60%</span>
+                    <span data-value="70">70%</span>
+                    <span data-value="80">80%</span>
+                    <span data-value="90">90%</span>
+                    <span data-value="100">100%</span>
+                </div>
+            </div>
+        </ul> %>
+
+        <div class="slider-container">
+    <div class="range-slider">
+        <input type="range" id="slider1" min="10" max="100" step="10" value="20">
+        <input type="range" id="slider2" min="10" max="100" step="10" value="80">
+        <div class="slider-track"></div>
+    </div>
+    <div class="output">
+        <span id="value1">20</span>% - <span id="value2">80</span>%
+    </div>
+</div>
+
+    </li>
+    <% end %>

@@ -80,3 +80,5 @@ bundle exec rails destroy model モデル名
 
 #rails g controller コマンドを取り消したいの場合
 bundle exec rails destroy controller controller 名
+
+params[:id]がデフォルトなので[]の中身をいじらない方が良い。

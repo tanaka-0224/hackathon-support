@@ -8,8 +8,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
-    @projects = @user.projects
+    Rails.logger.debug "params[:id]: #{params[:id]}"
+    @user = User.find_by(id: params[:id])
+    Rails.logger.debug "@user: #{@user.inspect}"
+    if @user
+      @projects = @user.projects
+    end
   end
 
   def create
@@ -65,6 +69,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find_by(id: params[:id])
     @projects = @current_user.projects
     if @current_user.update(skills_user_params)
       respond_to do |format|

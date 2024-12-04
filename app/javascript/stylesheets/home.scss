@@ -197,7 +197,7 @@ header {
   border-bottom: 1px solid #ddd;
 }
 
-/* 技術スタック */
+/* 技術スタック、投稿ボタン */
 
 .posts-index textarea {
   font-size: 20px;
@@ -205,6 +205,27 @@ header {
   min-height: 140px;
   border: 1px solid rgb(216, 218, 223);
   resize: none;
+}
+
+.post-button-container {
+  position: relative;
+  text-align: center;
+  margin-top: auto; /* 下部余白を自動設定 */
+  margin-bottom: 20px; /* 必要に応じて調整 */
+}
+
+.post-button {
+  display: inline-block; /* ブロック化して幅と高さを適用 */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.post-button:hover {
+  background-color: #0056b3;
 }
 
 /* about ================================ */

@@ -37,9 +37,16 @@
         </div>
       </div>
     </div>
+    <div class="post-button-container">
+      <div class="post-button">
+        <%= link_to "/#{@project.id}", class: "post-button" do %>
+        提案
+        <% end %>
+      </div>
+    </div>
   </div>
 <% else %>
-  <div class="main posts-new">
+  <div class="main">
     <div class="container">
       <h1 class="form-heading">技術スタック</h1>
       <div class="form">
@@ -47,7 +54,14 @@
           <div class="form-error">
           </div>
           <textarea name="content"></textarea>
-          <input type="submit" value="投稿">
+          
+        </div>
+      </div>
+      <div class="post-button-container">
+        <div class="post-button">
+        <%= link_to "/project", class: "post-button" do %>
+        提案
+        <% end %>
         </div>
       </div>
     </div>

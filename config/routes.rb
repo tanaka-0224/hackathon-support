@@ -6,24 +6,26 @@ Rails.application.routes.draw do
   get "projectmembers/index"
   get "projectmembers/create"
   get "tasks/index" => "tasks#index"
-  get "projects/index" => "projects#index"
+  get "project" => "projects#index"
 
-  # get "start", to: "projects#new"
-  # post "projects/create", to: "projects#create"
   post "/start", to: "projects#create"
 
   get "search" => "home#search" # ユーザー検索のrouting
   post "add_member", to: "projectmembers#add_member"
 
 
+
+
   get "users/index" => "users#index"
   get "signup" => "users#new"
   post "users/create", to: "users#create"
-  get "users/:id" => "users#show"
+  # get "users/:id" => "users#show"
   get "login", to: "users#login_form"
   post "/login", to: "users#login"
-  get "show/:user_id", to: "users#show"
+  get "show/:id", to: "users#show"
   get "users/search", to: "users#search" # ユーザー検索
+
+  get ":project_id", to: "projects#index"
 
 
   post "/logout", to: "users#logout"

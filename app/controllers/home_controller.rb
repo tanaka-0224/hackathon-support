@@ -22,9 +22,12 @@ class HomeController < ApplicationController
     if User.exists?(id: session[:user_id])
       @user = User.find(session[:user_id])  # ユーザーを取得
     end
+    if Project.exists?(id: session[:project_id])
+    @project = Project.find(session[:project_id])
     @members = ProjectMember.where(project_id: session[:project_id])
     @members.each do |member|
       puts member.user.name # userが関連付けられているか確認
+    end
     end
   end
 end
