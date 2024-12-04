@@ -1,8 +1,8 @@
-<% javascript_pack_tag 'skills' %>
+<%= javascript_pack_tag 'skills' %>
 <div class="main user-show">
   <div class="container">
     <div class="user">
-      <div class="profile-info">
+      <div class="profile-info"> 
         <img src="<%= "/user_images/#{@user.image_name}" %>" alt="Profile Image">
       </div>
       <div>
@@ -29,15 +29,19 @@
 
       <div id="skills-message"></div>
 
+      <% if @projects %>
       <% @projects.each do |project| %>
         <div>
-          <%= project.id %>:
+          <a href="/<%= project.id %>">
+            <%= project.id %>
+          </a>
           <% project.users.each do |user| %>
             <a href="/show/<%= user.id %>">
               <img src="<%= "/user_images/#{user.image_name}" %>" alt="User Image">
             </a>
           <% end %>
         </div>
+      <% end %>
       <% end %>
     </div>
   </div>

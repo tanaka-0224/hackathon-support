@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_30_052414) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_04_052706) do
   create_table "project_members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_052414) do
     t.float "percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -48,4 +50,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_30_052414) do
 
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
+  add_foreign_key "tasks", "projects"
 end
