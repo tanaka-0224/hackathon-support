@@ -1,6 +1,8 @@
 <%= javascript_pack_tag 'application' %>
 <%= javascript_pack_tag 'tabs' %> 
 <%= javascript_pack_tag 'search' %>
+<%= javascript_pack_tag 'gptapi' %>
+<%= javascript_pack_tag 'project' %>
 
 
 <% if @current_user  %>
@@ -39,9 +41,10 @@
     </div>
     <div class="post-button-container">
       <div class="post-button">
-        <%= link_to "/#{@project.id}", class: "post-button" do %>
+        <%#= link_to "/#{@project.id}", class: "post-button" do %>
+        <button id="suggest-button" data-project-id="<%= @project.id %>">提案</button>
+
         提案
-        <% end %>
       </div>
     </div>
   </div>

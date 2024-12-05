@@ -5,6 +5,10 @@ gem "rails", "~> 7.2.2"
 
 gem "webpacker"
 
+gem "dotenv-rails"
+gem "ruby-openai"
+
+
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
 # Use the Puma web server [https://github.com/puma/puma]
