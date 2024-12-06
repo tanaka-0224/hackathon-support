@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   post "/logout", to: "users#logout"
 
-
+  post "/projects/:project_id/suggest", to: "projects#suggest"
 
 
   get "/:project_id", to: "home#top"

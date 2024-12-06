@@ -40,9 +40,14 @@
       </ul>
       <ul class="header-menus">
         <% if @current_user %>
-        <li>
-          <%= link_to("icon", "/show/#{@current_user.id}")%>
-        </li>
+        <%# <li>
+          <%= link_to("icon", "/show/#{@current_user.id}")
+        </li> %>
+        <div class="user">
+          <a href="/show/<%= @current_user.id %>">
+            <img src="<%= "/user_images/#{@current_user.image_name}" %>" alt="User Image">
+          </a>
+        </div>
         <% else %>
         <li>
         <%= link_to("signup", "/signup")%>
